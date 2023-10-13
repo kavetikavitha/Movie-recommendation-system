@@ -3,7 +3,7 @@ import pickle
 import pandas as pd
 import requests
 import bz2
-import Bz2file as bz2
+#import Bz2file as bz2
 import _pickle as cPickle
 def fetch_poster(movie_id):
     response=requests.get('https://api.themoviedb.org/3/movie/{}?api_key=553e98d8035145295aa9601d88def550&append_to_response=videos'.format(movie_id))
