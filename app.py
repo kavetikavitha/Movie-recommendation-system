@@ -3,7 +3,7 @@ import pickle
 import pandas as pd
 import requests
 import bz2
-#import Bz2file as bz2
+import bz2file as bz2
 import _pickle as cPickle
 def fetch_poster(movie_id):
     response=requests.get('https://api.themoviedb.org/3/movie/{}?api_key=553e98d8035145295aa9601d88def550&append_to_response=videos'.format(movie_id))
@@ -34,9 +34,10 @@ def decompress_pickle(file):
 
 
 st.title('Movie recommedation system')
-selected_movie_name=st.selectbox('How would you like to be contacted?',(movies['title'].values))
+selected_movie_name=st.selectbox('What would you like to search?',(movies['title'].values))
 similarity = decompress_pickle('similarity2.pbz2')
 if st.button('Recommend'):
+    st.write('Results for your search')
     names,posters=recommend(selected_movie_name)
     col1, col2, col3, col4, col5=st.columns(5)
     with col1:
@@ -54,3 +55,5 @@ if st.button('Recommend'):
     with col5:
         st.text(names[4])
         st.image(posters[4])
+
+
